@@ -13,6 +13,7 @@ public class Main {
         Matrix m6=new Matrix(5);
         m6.chessBoardFill();
         m1.randomFill();
+        m4.randomFill();
         m2.zeroFill();
         try{
             Matrix m5=m1.matrixMultiplication(m4);

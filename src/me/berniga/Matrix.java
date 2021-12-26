@@ -121,17 +121,10 @@ public class Matrix {
         } catch(ArrayIndexOutOfBoundsException e){}
     }
 
-    private int rowMultiplication(int row,int column){
-        int result=1;
-        for(int i=0;i<=column;i++)
-            result*=matrix[row][i];
-        return result;
-    }
-
-    private int columnMultiplication(int row,int column){
-        int result=1;
-        for(int i=0;i<=row;i++)
-            result*=matrix[i][column];
+    private int cellComputation(int i,int j,Matrix m){
+        int result=0;
+        for(int k=0;k< matrix.length;k++)
+            result+=(matrix[i][k]*m.getValue(k,j));
         return result;
     }
 
@@ -140,7 +133,7 @@ public class Matrix {
         Matrix result=new Matrix(matrix.length);
             for (int i = 0; i < matrix.length; i++)
                 for (int j = 0; j < matrix.length; j++)
-                    result.setValue(i, j, this.rowMultiplication(i, j) + m.columnMultiplication(i, j));
+                    result.setValue(i, j,cellComputation(i,j,m));
         return result;
     }
 
