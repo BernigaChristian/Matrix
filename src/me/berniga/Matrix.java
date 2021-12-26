@@ -27,11 +27,6 @@ public class Matrix {
         matrix[row][column]=value;
     }
 
-    public void oneFill(){
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
-                matrix[i][j]=1;
-    }
 
     public void zeroFill(){
         for(int i=0;i<matrix[0].length;i++)
@@ -72,11 +67,30 @@ public class Matrix {
         return true;
     }
 
+    public void chessBoardFill(){
+        int num=0;
+        for(int i=0;i<matrix[0].length;i++)
+            for(int j=0;j<matrix[0].length;j++) {
+                if(i==0&&j==0){
+                    matrix[i][j]=0;
+                    num=matrix[i][j];
+                }
+                else{
+                    if(num==0)
+                        matrix[i][j]=++num;
+                    else
+                        matrix[i][j]=--num;
+                }
+            }
+    }
+
     public boolean isChessBoard(){
         if(!onlyZerosOnes())    return false;
-        for(int i=0;i< matrix[0].length;i++)
-            for(int j=0;j< matrix[0].length&&(i!=j&&i!= matrix.length);j++)
-                if(matrix[i][j+1]!=(matrix[i][j]-1)&&matrix[i][j+1]!=(matrix[i][j]+1))  return false;
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j< matrix.length&&(i!=(matrix.length-1)&&j!=(matrix.length-1));j++) {
+                if((j==0&&i>0)&&(matrix[i][0]==matrix[i-1][matrix.length-1]))   return false;
+                if (matrix[i][j + 1] != (matrix[i][j] - 1) && matrix[i][j + 1] != (matrix[i][j] + 1)) return false;
+            }
         return true;
     }
 
@@ -129,19 +143,11 @@ public class Matrix {
         return result;
     }
 
-    private int findGreater(Matrix m){
-        int r=0;
-        for (int i = 0; i < matrix[0].length; i++)
-            for (int j = 0; j < matrix[0].length; j++)
-                r++;
-        return r;
-    }
-
-    public Matrix matrixMultiplication(Matrix m){
-        int rSize;
-        Matrix result=new Matrix(rSize=(findGreater(this)<findGreater(m))?this.getSize():m.getSize());
-            for (int i = 0; i < rSize; i++)
-                for (int j = 0; j < rSize; j++)
+    public Matrix matrixMultiplication(Matrix m)    throws SizeException{
+        if(matrix.length!=m.getSize())  throw new SizeException();
+        Matrix result=new Matrix(matrix.length);
+            for (int i = 0; i < matrix.length; i++)
+                for (int j = 0; j < matrix.length; j++)
                     result.setValue(i, j, this.rowMultiplication(i, j) + m.columnMultiplication(i, j));
         return result;
     }
