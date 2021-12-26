@@ -27,50 +27,49 @@ public class Matrix {
         matrix[row][column]=value;
     }
 
-
     public void zeroFill(){
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix.length;j++)
                 matrix[i][j]=(i==j)?1:0;
     }
 
     public void randomFill(){
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix.length;j++)
                 matrix[i][j]=new Random().nextInt(101);
     }
 
     public void inputFill(){
         Scanner scan=new Scanner(System.in);
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix.length;j++)
                 matrix[i][j]=scan.nextInt();
     }
 
     private int rowSum(int rowNumber){
         int sum=0;
-        for(int i=0;i<matrix[rowNumber].length;i++)
+        for(int i=0;i<matrix.length;i++)
             sum+=matrix[rowNumber][i];
         return sum;
     }
 
     public boolean isPalindrome(){
-        for(int i=0;i<(matrix[0].length/2);i++)
-            if(rowSum(i)!=rowSum(matrix[0].length-i-1))   return false;
+        for(int i=0;i<(matrix.length/2);i++)
+            if(rowSum(i)!=rowSum(matrix.length-i-1))   return false;
         return true;
     }
 
     private boolean onlyZerosOnes(){
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix.length;j++)
                 if(matrix[i][j]!=0&&matrix[i][j]!=1)    return false;
         return true;
     }
 
     public void chessBoardFill(){
         int num=0;
-        for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++)
+        for(int i=0;i<matrix.length;i++)
+            for(int j=0;j<matrix.length;j++)
                 matrix[i][j]=(i==0&&j==0)?(num=0):((num==0)?++num:--num);
     }
 
@@ -89,35 +88,35 @@ public class Matrix {
     }
 
     private boolean rowsCheck(int row,int column){
-        for(int i=row;i<(matrix[0].length-1);i++)
+        for(int i=row;i<(matrix.length-1);i++)
             if(matrix[i][column]>matrix[i+1][column])   return false;
         return true;
     }
 
     private boolean columnsCheck(int row,int column){
-        for(int i=column;i<(matrix[0].length-1);i++)
+        for(int i=column;i<(matrix.length-1);i++)
             if(matrix[row][i]>matrix[row][i+1])   return false;
         return true;
     }
 
     public boolean isLessProperty(){
-        for(int i=0;i< matrix[0].length;i++)
-            for(int j=0;j< matrix[0].length;j++)
+        for(int i=0;i< matrix.length;i++)
+            for(int j=0;j< matrix.length;j++)
                 if(!rowsCheck(i,j)&&!columnsCheck(i,j))  return false;
         return true;
     }
 
     public boolean multiplicationProperty(){
-        for(int i=0;i< matrix[0].length;i++)
-            for(int j=0;j< matrix[0].length;j++)
+        for(int i=0;i< matrix.length;i++)
+            for(int j=0;j< matrix.length;j++)
                 if(matrix[i][j]!=(i*j))  return false;
         return true;
     }
 
     public void matrixSum(Matrix m){
         try{
-            for (int i = 0; i < matrix[0].length; i++)
-                for (int j = 0; j < matrix[0].length; j++)
+            for (int i = 0; i < matrix.length; i++)
+                for (int j = 0; j < matrix.length; j++)
                     matrix[i][j] += m.getValue(i, j);
         } catch(ArrayIndexOutOfBoundsException e){}
     }
@@ -147,8 +146,8 @@ public class Matrix {
 
     public String toString(){
         String matrixString="";
-        for(int i=0;i< matrix[0].length;i++) {
-            for (int j = 0; j < matrix[0].length; j++)
+        for(int i=0;i< matrix.length;i++) {
+            for (int j = 0; j < matrix.length; j++)
                 matrixString += matrix[i][j] + "\t";
             matrixString+="\n";
         }
