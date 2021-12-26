@@ -70,25 +70,19 @@ public class Matrix {
     public void chessBoardFill(){
         int num=0;
         for(int i=0;i<matrix[0].length;i++)
-            for(int j=0;j<matrix[0].length;j++) {
-                if(i==0&&j==0){
-                    matrix[i][j]=0;
-                    num=matrix[i][j];
-                }
-                else{
-                    if(num==0)
-                        matrix[i][j]=++num;
-                    else
-                        matrix[i][j]=--num;
-                }
-            }
+            for(int j=0;j<matrix[0].length;j++)
+                matrix[i][j]=(i==0&&j==0)?(num=0):((num==0)?++num:--num);
     }
 
     public boolean isChessBoard(){
         if(!onlyZerosOnes())    return false;
         for(int i=0;i<matrix.length;i++)
             for(int j=0;j< matrix.length&&(i!=(matrix.length-1)&&j!=(matrix.length-1));j++) {
-                if((j==0&&i>0)&&(matrix[i][0]==matrix[i-1][matrix.length-1]))   return false;
+                /**controllo pima cella di ogni riga che sia diversa dall'ultima della riga precedente**/
+                if(j==0&&i>0) {
+                    if (matrix.length % 2 == 0 && (matrix[i][0] == matrix[i - 1][0])) return false;
+                    if(matrix[i][0]==matrix[i-1][matrix.length-1])    return false;
+                }
                 if (matrix[i][j + 1] != (matrix[i][j] - 1) && matrix[i][j + 1] != (matrix[i][j] + 1)) return false;
             }
         return true;
@@ -126,7 +120,6 @@ public class Matrix {
                 for (int j = 0; j < matrix[0].length; j++)
                     matrix[i][j] += m.getValue(i, j);
         } catch(ArrayIndexOutOfBoundsException e){}
-        /**if their sizes are not equal the sum is done only in the equal part**/
     }
 
     private int rowMultiplication(int row,int column){
