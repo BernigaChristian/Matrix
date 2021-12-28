@@ -10,7 +10,7 @@ public class Main {
         Matrix m2=new Matrix(2);
         Matrix m3=new Matrix(4);
         Matrix m4=new Matrix(3);
-        Matrix m6=new Matrix(5);
+        Matrix m6=new Matrix(4);
         m6.chessBoardFill();
         m1.randomFill();
         m4.randomFill();
