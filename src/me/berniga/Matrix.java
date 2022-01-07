@@ -113,11 +113,11 @@ public class Matrix {
     }
 
     public void matrixSum(Matrix m){
-        try{
-            for (int i = 0; i < matrix.length; i++)
-                for (int j = 0; j < matrix.length; j++)
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix.length; j++)
+                try{
                     matrix[i][j] += m.getValue(i, j);
-        } catch(ArrayIndexOutOfBoundsException e){}
+                } catch(ArrayIndexOutOfBoundsException e){}
     }
 
     private int cellComputation(int i,int j,Matrix m){

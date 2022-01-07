@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Matrix 4\n"+m4);
         System.out.println("Matrix 6\n"+m6);
         m1.matrixSum(m2);
-        System.out.println("Matrix 1+Matrix 2\n"+m1);
+        System.out.println("Matrix 2+Matrix 1\n"+m1);
         System.out.println("Matrix 1 properties\n"+m1.isPalindrome()+"\t"+m1.isLessProperty()+"\t"+m1.isChessBoard()+"\t"+m1.multiplicationProperty());
         System.out.println("Matrix 2 properties\n"+m2.isPalindrome()+"\t"+m2.isLessProperty()+"\t"+m2.isChessBoard()+"\t"+m2.multiplicationProperty());
         System.out.println("Matrix 6 properties\n"+m6.isPalindrome()+"\t"+m6.isLessProperty()+"\t"+m6.isChessBoard()+"\t"+m6.multiplicationProperty());
