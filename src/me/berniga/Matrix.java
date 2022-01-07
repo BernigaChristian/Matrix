@@ -79,9 +79,8 @@ public class Matrix {
             for(int j=0;j< matrix.length&&(i!=(matrix.length-1)&&j!=(matrix.length-1));j++) {
                 /**controllo pima cella di ogni riga che sia diversa dall'ultima della riga precedente**/
                 if(j==0&&i>0&&(matrix[i][0] == matrix[i - 1][0]))   return false;
-                    /*if (matrix.length % 2 == 0 && (matrix[i][0] == matrix[i - 1][0])) return false;
-                    if(matrix[i][0]==matrix[i-1][matrix.length-1])    return false;*/
-                if (matrix[i][j + 1] != (matrix[i][j] - 1) && matrix[i][j + 1] != (matrix[i][j] + 1)) return false;
+                //if (matrix[i][j + 1] != (matrix[i][j] - 1) && matrix[i][j + 1] != (matrix[i][j] + 1)) return false;
+                if(matrix[i][j]==matrix[i][j+1])    return false;
             }
         return true;
     }
@@ -101,7 +100,8 @@ public class Matrix {
     public boolean isLessProperty(){
         for(int i=0;i< matrix.length;i++)
             for(int j=0;j< matrix.length;j++)
-                if(!rowsCheck(i,j)&&!columnsCheck(i,j))  return false;
+                if(!rowsCheck(i,j)||!columnsCheck(i,j))  return false;
+                //if(!rowsCheck(i,j)&&!columnsCheck(i,j))  return false;
         return true;
     }
 
